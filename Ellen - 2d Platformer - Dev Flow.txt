@@ -1,0 +1,18 @@
+
+1. Created Player.
+2. Created Animation setup
+	a. Window-->Animation (this created Animation window/panel)
+	b. Clicked on "create" button, and gave the path as "Assets-->Animations-->Player". This created a Animation controller in Project folders.
+	c. Add a component (Animation) in Player object in Hierarchy.
+	d. Assigned the Animation Controller created in "b" to the 'animator' parameter in the "Animator" component of player.
+	e. Clicked on Player in Hierarchy, and created animations clips using sprites, at path same as where Controller is there.
+	f. Created transitions between animations from Animator window (by double clicking controller in project window).
+	g. Created a PlayerController script and added it as component to Player object.
+	h. With this setup we can 
+		i.  Click Player in Hierarchy and create new animations in animations window.
+		ii. Click Controller in project folder and observe animations created and configure transitions in 'Animator' window.
+		iii. Use PlayerController script to access "animator" and add logic to modify stuff using user-input.
+3. Player interaction with world.
+	a. Added "rigid body" and "colider" to Player. 
+	b. Added a game object and added "ground/tile" sprint to it in sprite rendered component.
+	c. The player now lands on this ground, and we can also play animations based on user input.
