@@ -1,7 +1,7 @@
 
 1. Created Player.
 2. Created Animation setup
-	a. Window-->Animation (this created Animation window/panel)
+	a. Window --> Animation (this created Animation window/panel)
 	b. Clicked on "create" button, and gave the path as "Assets-->Animations-->Player". This created a Animation controller in Project folders.
 	c. Add a component (Animation) in Player object in Hierarchy.
 	d. Assigned the Animation Controller created in "b" to the 'animator' parameter in the "Animator" component of player.
@@ -16,3 +16,21 @@
 	a. Added "rigid body" and "colider" to Player. 
 	b. Added a game object and added "ground/tile" sprint to it in sprite rendered component.
 	c. The player now lands on this ground, and we can also play animations based on user input.
+4. Player Movement
+	a. By changing the transform.position of the player.
+	b. Do this by using direction & speed variables.
+5. Accessing Components of a gameObject in script (ex: Player)
+	a. When the component in part of the Object in HIerarchy (Ex: SpriteRenderer, RigidBody2D etc)
+		i.  In the class, define private variable (private RigidBody2D rb;)
+		ii. In start or awake, get the relevant component into rb (rb = GetComponent<Rigidbody2D>)
+		iii. In update or other functions, set/modify values for this component based on logic (rb.rb.velocity = new Vector2(rb.velocity.x, jumpForce);)
+	b. When the component is not part of the Object in Hierarchy (Ex: Animator).
+		i. In Inspector, we do have a component called "Animator", so we create it in Player.
+		ii. However, the animations (clips and relationshipbetween them) are stored in "Player controller" in a file in Project folder.
+		iii. We associate this "Player Controller" with "Animator" component in Inspector by dragging/dropping it in the Inspector.
+		iv. Here on, we can follow the same approach as in point "a".
+6. Make code readable.
+	0. Make speed a public variable (to test in inspector). And define "direction" in Update() method (based on user input keys).
+	a. Move the animation logic into PlayerAnimation() method and call this in Update().
+	b. Move the movement logic into PlayerMovement() method and call this in Update().
+	

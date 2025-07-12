@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
     public float crouchHeightMultiplier = 0.5f;
+    public float speed = 5f;
     
     // Start is called before the first frame update
     void Start()
@@ -27,8 +28,32 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         float move = Input.GetAxis("Horizontal");
-        animator.SetFloat("Speed", Mathf.Abs(move));
+        float vertical = Input.GetAxis("Vertical");
 
+        PlayerMovement(move, vertical);
+        PlayAnimation(move, vertical);       
+       
+    }
+
+    private void PlayerMovement(float move, float vertical)
+    {
+        // Move the player by changing its transform.position based on speed
+        Vector3 position = transform.position;
+        position.x += move * speed * Time.deltaTime;
+        transform.position = position;
+
+        // Jump logic (movement only)
+        if (vertical > 0.5f && isGrounded)
+        {
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            isGrounded = false;
+            animator.SetTrigger("Jump"); // Set jump trigger when jump starts
+        }
+    }
+
+    private void PlayAnimation(float move, float vertical)
+    {
+        animator.SetFloat("Speed", Mathf.Abs(move));
         // MODIFY LOGIC SO THAT WE DON'T HARD CODE THE SCALE, INSTEAD REVERSE THE DIRECTION OF THE X COMPONENT
         if (move > 0.01f)
         {
@@ -43,14 +68,6 @@ public class PlayerController : MonoBehaviour
             if (scale.x > 0)
                 scale.x = -scale.x;
             transform.localScale = scale;
-        }
-
-        // Jump logic
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            isGrounded = false;
-            animator.SetTrigger("Jump");
         }
 
         // Crouch logic
