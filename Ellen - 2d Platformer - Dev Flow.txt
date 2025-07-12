@@ -9,18 +9,18 @@
 	f. Created transitions between animations from Animator window (by double clicking controller in project window).
 	g. Created a PlayerController script and added it as component to Player object.
 	h. With this setup we can 
-		i.  Click Player in Hierarchy and create new animations in animations window.
-		ii. Click Controller in project folder and observe animations created and configure transitions in 'Animator' window.
+		i.   Click Player in Hierarchy and create new animations in animations window.
+		ii.  Click Controller in project folder and observe animations created and configure transitions in 'Animator' window.
 		iii. Use PlayerController script to access "animator" and add logic to modify stuff using user-input.
 3. Player interaction with world.
 	a. Added "rigid body" and "colider" to Player. 
-	b. Added a game object and added "ground/tile" sprint to it in sprite rendered component.
+	b. Added a game object and added "ground/tile" sprite to it in sprite-renderer component.
 	c. The player now lands on this ground, and we can also play animations based on user input.
 4. Player Movement
-	a. By changing the transform.position of the player.
-	b. Do this by using direction & speed variables.
+	a. For Horizontal input - By changing the transform.position of the player. Do this by using direction & speed variables. ALso playing run animation.
+	b. For Vertical input   - By applying the force on the rigibody along Y-axis and also playing Jump animation.
 5. Accessing Components of a gameObject in script (ex: Player)
-	a. When the component in part of the Object in HIerarchy (Ex: SpriteRenderer, RigidBody2D etc)
+	a. When the component in part of the Object in Hierarchy (Ex: SpriteRenderer, RigidBody2D etc)
 		i.  In the class, define private variable (private RigidBody2D rb;)
 		ii. In start or awake, get the relevant component into rb (rb = GetComponent<Rigidbody2D>)
 		iii. In update or other functions, set/modify values for this component based on logic (rb.rb.velocity = new Vector2(rb.velocity.x, jumpForce);)
@@ -33,4 +33,8 @@
 	0. Make speed a public variable (to test in inspector). And define "direction" in Update() method (based on user input keys).
 	a. Move the animation logic into PlayerAnimation() method and call this in Update().
 	b. Move the movement logic into PlayerMovement() method and call this in Update().
+7. Creating the world using Tilemaps
+	a. Tilemaps are Unity's way of easily creating the world. First, the entire scene is divided into a grid. Small cells.
+	b. Now, in the Tile Pallette, you will have some finite images that you want to paint in the grid (like applying format-painter in slides).
+	c. Window-->2D-->Tile Pallette. Create new-->Save it as say "Ground Pallette". Bring 2-3 source images. Use these to paint ground for level 1.
 	
