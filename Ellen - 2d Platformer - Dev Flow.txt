@@ -34,7 +34,11 @@
 	a. Move the animation logic into PlayerAnimation() method and call this in Update().
 	b. Move the movement logic into PlayerMovement() method and call this in Update().
 7. Creating the world using Tilemaps
-	a. Tilemaps are Unity's way of easily creating the world. First, the entire scene is divided into a grid. Small cells.
-	b. Now, in the Tile Pallette, you will have some finite images that you want to paint in the grid (like applying format-painter in slides).
-	c. Window-->2D-->Tile Pallette. Create new-->Save it as say "Ground Pallette". Bring 2-3 source images. Use these to paint ground for level 1.
+	a. Tilemaps are Unity's way of easily creating the world. First, the entire scene is divided into a grid (whe you add create->2D->tilemap in hierarchy). 
+		i. Call it GroundTiles. Now whatever you will paint on the grid, that's part of this one TileMap object called "GroundTiles". 
+		ii. If you delete it, all the "ground" that is part of this object, gets deleted.
+	b. Now, Window-->2D-->Tile Pallette. Create new-->Save it as say "Ground Pallette". Bring 2-3 source images. Use these to paint ground for level 1.
+	c. Now, in the Tile Pallette, you will have some finite images that you want to paint in the grid (like applying format-painter in slides).
+	d. So basically, We paint the "TileMap Grid" in the scene using "Tile Palette".
+	e. At this point, "Grond Tile" is not a static rigid body so player will fall through.
 	
