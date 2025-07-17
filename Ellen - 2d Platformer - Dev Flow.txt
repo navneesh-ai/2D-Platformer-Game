@@ -46,4 +46,10 @@
 8. Moving camera with player
 	a. Either do via script or make camera a child object of Player in hierarchy (as transform of child object move relative to the parent).
 	b. Set the transform values of camera once to decide (ex: 70% of space above the player will be visible and 30% below like a normal transformer).
-	
+9. Adding triggers:
+	a. Added a game object and made it a trigger in collider2D, and added a script to it to load next level when player touches it.	
+	b. Added a game object and made it a trigger in collider2D, and added a script to it to load current level (when player falls through cracks and touches it / dies).
+
+
+
+
