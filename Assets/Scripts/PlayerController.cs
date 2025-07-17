@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 originalColliderOffset;
     public float crouchHeightMultiplier = 0.5f;
     public float speed = 5f;
+    public LayerMask groundLayer; // Assign this in the Inspector to your Ground layer
     
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,12 @@ public class PlayerController : MonoBehaviour
     {
         float move = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+
+        // Raycast ground check
+        // Cast a short ray down from the center of the player
+        float extraHeight = 0.05f;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, (originalColliderSize.y / 2f) + extraHeight, groundLayer);
+        isGrounded = hit.collider != null;
 
         PlayerMovement(move, vertical);
         PlayAnimation(move, vertical);       
@@ -84,15 +91,6 @@ public class PlayerController : MonoBehaviour
             // Restore collider size
             boxCollider.size = originalColliderSize;
             boxCollider.offset = originalColliderOffset;
-        }
-    }
-
-    // Simple ground check (replace with your own collision logic)
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
         }
     }
 }

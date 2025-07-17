@@ -40,5 +40,10 @@
 	b. Now, Window-->2D-->Tile Pallette. Create new-->Save it as say "Ground Pallette". Bring 2-3 source images. Use these to paint ground for level 1.
 	c. Now, in the Tile Pallette, you will have some finite images that you want to paint in the grid (like applying format-painter in slides).
 	d. So basically, We paint the "TileMap Grid" in the scene using "Tile Palette".
-	e. At this point, "Grond Tile" is not a static rigid body so player will fall through.
+	e. At this point, "Grond Tile" is not a static rigid body so player will fall through. Add Tilemap Collider 2D, and now it works.
+	f. "isgrounder" flag in jump works with the platform tagged as "Ground". So add that tag to Tilemap also.
+	g. Add another Tilemap for BackgroundRocks. Add rocks in grid. Play with alpha scale to make it semi transparent so it appears as background thing.
+8. Moving camera with player
+	a. Either do via script or make camera a child object of Player in hierarchy (as transform of child object move relative to the parent).
+	b. Set the transform values of camera once to decide (ex: 70% of space above the player will be visible and 30% below like a normal transformer).
 	
