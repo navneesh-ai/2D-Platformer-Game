@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public float crouchHeightMultiplier = 0.5f;
     public float speed = 5f;
     public LayerMask groundLayer; // Assign this in the Inspector to your Ground layer
+
+    public ScoreController scoreController;
     
     // Start is called before the first frame update
     void Start()
@@ -40,6 +42,12 @@ public class PlayerController : MonoBehaviour
         PlayerMovement(move, vertical);
         PlayAnimation(move, vertical);       
        
+    }
+
+    public void PickUpKey()
+    {
+        Debug.Log("Player picked up the key");
+        scoreController.IncrementScore(10);
     }
 
     private void PlayerMovement(float move, float vertical)

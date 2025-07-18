@@ -41,14 +41,24 @@
 	c. Now, in the Tile Pallette, you will have some finite images that you want to paint in the grid (like applying format-painter in slides).
 	d. So basically, We paint the "TileMap Grid" in the scene using "Tile Palette".
 	e. At this point, "Grond Tile" is not a static rigid body so player will fall through. Add Tilemap Collider 2D, and now it works.
-	f. "isgrounder" flag in jump works with the platform tagged as "Ground". So add that tag to Tilemap also.
+	f. "isgrounded" flag in jump works with the platform tagged as "Ground". So add that tag to Tilemap also.
 	g. Add another Tilemap for BackgroundRocks. Add rocks in grid. Play with alpha scale to make it semi transparent so it appears as background thing.
 8. Moving camera with player
 	a. Either do via script or make camera a child object of Player in hierarchy (as transform of child object move relative to the parent).
 	b. Set the transform values of camera once to decide (ex: 70% of space above the player will be visible and 30% below like a normal transformer).
-9. Adding triggers:
+9. Adding LevelComplete & LevelReload logics
+	0. To be used when player reaches the end of level, or, dies in between respectively.
 	a. Added a game object and made it a trigger in collider2D, and added a script to it to load next level when player touches it.	
 	b. Added a game object and made it a trigger in collider2D, and added a script to it to load current level (when player falls through cracks and touches it / dies).
+10. Adding interactable object (such as coins or keys)
+	a. Add a game object, add image in sprite renderer. Add collider2D.
+	b. Add a KeyController Script. Add logic to detect collision with only player (using getComponent<PlayerController>) in OnColliderEnter2D.
+	c. On Collision, call PickUpKey() in PlayerController script. And destroy the key. Later, we will add logic to add points in PlayerController when key is picked up.
+11. Adding score on UI for keys collected
+	a. Add TextMesh object called "Score" in UI. Align and make default text as "Score: 0"
+	b. Add ScoreController script. Add logic in it to increment a private "score" variable in a method.
+	c. Access component TextMeshPro inside this (i.e. Score object). Add RefreshUI method to update the text to "Score: "+score.
+	d. In PlayerController, when PickUpKey is called, also call this increaseScore method inside ScoreController.
 
 
 
