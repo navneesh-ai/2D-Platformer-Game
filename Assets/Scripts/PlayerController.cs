@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer; // Assign this in the Inspector to your Ground layer
 
     public ScoreController scoreController;
+    public PlayerHealth playerHealth; // Assign in Inspector
     
     // Start is called before the first frame update
     void Start()
@@ -48,6 +50,20 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Player picked up the key");
         scoreController.IncrementScore(10);
+    }
+
+    public void KillPlayer()
+    {
+        Debug.Log("Player killed");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if (collision.gameObject.CompareTag("Enemy")) 
+        {
+            playerHealth.TakeDamage();
+        }
     }
 
     private void PlayerMovement(float move, float vertical)

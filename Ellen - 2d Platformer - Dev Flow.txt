@@ -20,10 +20,10 @@
 	a. For Horizontal input - By changing the transform.position of the player. Do this by using direction & speed variables. ALso playing run animation.
 	b. For Vertical input   - By applying the force on the rigibody along Y-axis and also playing Jump animation.
 5. Accessing Components of a gameObject in script (ex: Player)
-	a. When the component in part of the Object in Hierarchy (Ex: SpriteRenderer, RigidBody2D etc)
+	a. When the component is part of the Object in Inspector (Ex: SpriteRenderer, RigidBody2D etc)
 		i.  In the class, define private variable (private RigidBody2D rb;)
 		ii. In start or awake, get the relevant component into rb (rb = GetComponent<Rigidbody2D>)
-		iii. In update or other functions, set/modify values for this component based on logic (rb.rb.velocity = new Vector2(rb.velocity.x, jumpForce);)
+		iii. In update or other functions, set/modify values for this component based on logic (rb.velocity = new Vector2(rb.velocity.x, jumpForce);)
 	b. When the component is not part of the Object in Hierarchy (Ex: Animator).
 		i. In Inspector, we do have a component called "Animator", so we create it in Player.
 		ii. However, the animations (clips and relationshipbetween them) are stored in "Player controller" in a file in Project folder.
@@ -34,7 +34,7 @@
 	a. Move the animation logic into PlayerAnimation() method and call this in Update().
 	b. Move the movement logic into PlayerMovement() method and call this in Update().
 7. Creating the world using Tilemaps
-	a. Tilemaps are Unity's way of easily creating the world. First, the entire scene is divided into a grid (whe you add create->2D->tilemap in hierarchy). 
+	a. Tilemaps are Unity's way of easily creating the world. First, the entire scene is divided into a grid (when you add create->2D->tilemap in hierarchy). 
 		i. Call it GroundTiles. Now whatever you will paint on the grid, that's part of this one TileMap object called "GroundTiles". 
 		ii. If you delete it, all the "ground" that is part of this object, gets deleted.
 	b. Now, Window-->2D-->Tile Pallette. Create new-->Save it as say "Ground Pallette". Bring 2-3 source images. Use these to paint ground for level 1.
@@ -45,7 +45,7 @@
 	g. Add another Tilemap for BackgroundRocks. Add rocks in grid. Play with alpha scale to make it semi transparent so it appears as background thing.
 8. Moving camera with player
 	a. Either do via script or make camera a child object of Player in hierarchy (as transform of child object move relative to the parent).
-	b. Set the transform values of camera once to decide (ex: 70% of space above the player will be visible and 30% below like a normal transformer).
+	b. Set the transform values of camera once to decide (ex: 70% of space above the player will be visible and 30% below like a normal platformer).
 9. Adding LevelComplete & LevelReload logics
 	0. To be used when player reaches the end of level, or, dies in between respectively.
 	a. Added a game object and made it a trigger in collider2D, and added a script to it to load next level when player touches it.	
@@ -59,7 +59,10 @@
 	b. Add ScoreController script. Add logic in it to increment a private "score" variable in a method.
 	c. Access component TextMeshPro inside this (i.e. Score object). Add RefreshUI method to update the text to "Score: "+score.
 	d. In PlayerController, when PickUpKey is called, also call this increaseScore method inside ScoreController.
-
+12. Adding Enemy
+	a. Behavior expected - Player dies when touches enemy. Camera is child of Player, but we don't want Camera to destroy. Level reloads.
+	b. Add game object enemy. Add one of enemy sprite. Add animation for that enemy.
+	c. Add enemycontroller script. Similar to KeyController condition, but ememy is not destroyed, instead player.killplayer is called.
 
 
 
